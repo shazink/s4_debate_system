@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>S4 Multi-Agent Debate System</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="bg-gradient"></div>
+    
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo">
+                <span class="logo-icon">🛡️</span>
+                <h1>S4 MULTI-AGENT DEBATE SYSTEM</h1>
+            </div>
+            <div class="status-badge" id="systemStatus">
+                <span class="status-dot"></span>
+                SYSTEM ONLINE
+            </div>
+        </header>
+
+        <!-- Query Input Section -->
+        <section class="query-section">
+            <h2 class="section-title">QUERY INPUT</h2>
+            <div class="input-wrapper">
+                <textarea 
+                    id="queryInput" 
+                    placeholder="Enter your query for multi-agent analysis..."
+                    maxlength="5000"
+                    rows="4"
+                ></textarea>
+                <div class="input-footer">
+                    <span class="char-counter"><span id="charCount">0</span> / 5000</span>
+                    <button id="submitBtn" class="submit-btn">
+                        <span class="btn-text">ANALYZE</span>
+                        <span class="btn-icon">→</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Attack Defense Monitor -->
+        <section class="defense-section" id="defenseSection">
+            <h2 class="section-title">
+                <span class="shield-icon">🛡️</span>
+                ATTACK DEFENSE MONITOR
+            </h2>
+            <div class="defense-grid">
+                <div class="defense-card">
+                    <div class="defense-label">RISK SCORE</div>
+                    <div class="defense-value" id="riskScore">0%</div>
+                </div>
+                <div class="defense-card">
+                    <div class="defense-label">VALIDATION STATUS</div>
+                    <div class="defense-value" id="validationStatus">STANDBY</div>
+                </div>
+                <div class="defense-card">
+                    <div class="defense-label">THREATS BLOCKED</div>
+                    <div class="defense-value" id="threatsBlocked">0</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Agent Dashboard -->
+        <section class="agents-section" id="agentsSection">
+            <h2 class="section-title">AGENT STATUS</h2>
+            <div class="agents-grid">
+                <!-- Utility Agent -->
+                <div class="agent-card" data-agent="utility">
+                    <div class="agent-header">
+                        <div class="agent-icon">⚡</div>
+                        <div class="agent-info">
+                            <h3>UTILITY AGENT</h3>
+                            <p>Action-Oriented</p>
+                        </div>
+                    </div>
+                    <div class="agent-stats">
+                        <div class="stat">
+                            <span class="stat-label">Threshold</span>
+                            <span class="stat-value">60%</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-label">Status</span>
+                            <span class="stat-value" id="utilityStatus">IDLE</span>
+                        </div>
+                    </div>
+                    <div class="agent-decision" id="utilityDecision"></div>
+                </div>
+
+                <!-- Accuracy Agent -->
+                <div class="agent-card" data-agent="accuracy">
+                    <div class="agent-header">
+                        <div class="agent-icon">🎯</div>
+                        <div class="agent-info">
+                            <h3>ACCURACY AGENT</h3>
+                            <p>Correctness-Focused</p>
+                        </div>
+                    </div>
+                    <div class="agent-stats">
+                        <div class="stat">
+                            <span class="stat-label">Threshold</span>
+                            <span class="stat-value">85%</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-label">Status</span>
+                            <span class="stat-value" id="accuracyStatus">IDLE</span>
+                        </div>
+                    </div>
+                    <div class="agent-decision" id="accuracyDecision"></div>
+                </div>
+
+                <!-- Safety Agent -->
+                <div class="agent-card" data-agent="safety">
+                    <div class="agent-header">
+                        <div class="agent-icon">🛡️</div>
+                        <div class="agent-info">
+                            <h3>SAFETY AGENT</h3>
+                            <p>Risk-Focused • VETO POWER</p>
+                        </div>
+                    </div>
+                    <div class="agent-stats">
+                        <div class="stat">
+                            <span class="stat-label">VETO at</span>
+                            <span class="stat-value">50% Risk</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-label">Status</span>
+                            <span class="stat-value" id="safetyStatus">IDLE</span>
+                        </div>
+                    </div>
+                    <div class="agent-decision" id="safetyDecision"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Debate Rounds -->
+        <section class="debate-section" id="debateSection" style="display: none;">
+            <h2 class="section-title">DEBATE PROGRESSION</h2>
+            <div id="debateRounds"></div>
+        </section>
+
+        <!-- Final Decision -->
+        <section class="result-section" id="resultSection" style="display: none;">
+            <h2 class="section-title">FINAL DECISION</h2>
+            <div class="result-card">
+                <div class="result-header">
+                    <div class="result-decision" id="finalDecision"></div>
+                </div>
+                <div class="result-reasoning" id="finalReasoning"></div>
+                <div class="result-metadata" id="resultMetadata"></div>
+            </div>
+        </section>
+
+        <!-- Loading Overlay -->
+        <div class="loading-overlay" id="loadingOverlay">
+            <div class="loading-content">
+                <div class="loading-spinner"></div>
+                <div class="loading-text">ANALYZING QUERY...</div>
+                <div class="loading-subtext">Multi-agent debate in progress</div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

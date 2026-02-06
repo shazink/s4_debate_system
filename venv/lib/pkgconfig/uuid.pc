@@ -1,0 +1,11 @@
+prefix=/home/shazin/projects/s4_debate_system/venv
+exec_prefix=/home/shazin/projects/s4_debate_system/venv
+libdir=/home/shazin/projects/s4_debate_system/venv/lib
+includedir=/home/shazin/projects/s4_debate_system/venv/include
+
+Name: uuid
+Description: Universally unique id library
+Version: 2.41.3
+Cflags: -I${includedir}/uuid
+Libs.private:  -lpthread
+Libs: -L${libdir} -luuid
