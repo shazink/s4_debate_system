@@ -17,9 +17,12 @@ class AttackDetector:
     
     # Prompt injection patterns
     INJECTION_PATTERNS = [
-        r'ignore\s+(previous|all|above)\s+instructions?',
+        r'ignore\s+.*instructions?',
+        r'disregard\s+.*instructions?',
+        r'forget\s+.*instructions?',
+        r'ignore\s+(previous|all|above)',
         r'disregard\s+(previous|all|above)',
-        r'forget\s+(everything|all|previous)',
+        r'forget\s+(everything|all|previous|above)',
         r'you\s+are\s+now',
         r'new\s+instructions?:',
         r'system\s*:\s*',

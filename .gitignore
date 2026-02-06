@@ -1,0 +1,16 @@
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+.env
+.DS_Store
+*.log
+.vscode/
+.idea/
+examples/*.json
+!examples/consensus_example.json
+!examples/debate_example.json
+!examples/veto_example.json
